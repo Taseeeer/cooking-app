@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: dimgrey;
+  font-family: monospace;
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+  padding: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  background-color: rgb(33, 48, 64);
+  color: white;
+  display: inline-block;
+  transform: skew(-10deg);
+  padding: 1rem;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+h3 {
+  font-size: 1.7rem;
+  background-color: rgb(33, 48, 64);
+  color: white;
+  display: inline-block;
+  transform: skew(-10deg);
+}
+
+button {
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.edit {
+  background-color: rgb(77, 79, 82);
+  padding: 0.7rem 0.9rem;
+  border: none;
+  border-radius: 0.5rem;
+  margin: 0.2rem;
+  color: white;
+}
+
+.delete {
+  background-color: rgb(77, 79, 82);
+  padding: 0.7rem 0.9rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  margin: 0.2rem;
+}
+
+.recpie {
+  background-color: rgb(77, 79, 82);
+  padding: 0.7rem 0.9rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  margin-left: 1.8rem;
+  animation: ud 1s infinite;
+}
+
+.rec-left {
+  border-right: 1px solid gray;
+  width: 50%;
+  min-height: 100ch;
+}
+
+.single {
+  padding: 2rem;
+  border-bottom: 1px solid gray;
+}
+
+.single:nth-child(3) {
+  border: none;
+}
+
+@keyframes ud {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
+}

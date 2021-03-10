@@ -1,10 +1,46 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import RecpieList from "./RecpieList";
+import "./app.css";
+import { v4 as uuid } from "uuid";
 
 function App() {
+  const [recpies, setRecpies] = useState(sampleData);
+
+  function handleRecpieAdd() {
+    const newRecpie = {
+      id: uuid(),
+      name: "name",
+      servings: 1,
+      cookTime: "1:00",
+      instructions: "inst",
+      ingredients: [
+        {
+          id: uuid(),
+          name: "ing",
+          amout: "1tb spoon",
+        },
+      ],
+    };
+    setRecpies([...recpies, newRecpie]);
+  }
+
+  function handleRecpieDelete(id) {
+    const newRecpies = recpies.filter((rec) => rec.id !== id);
+    setRecpies(newRecpies);
+  }
+
   return (
     <Fragment>
-      <RecpieList recpies={sampleData} />
+      <div className="title">
+        <h1>The cooking recpie</h1>
+      </div>
+      <div className="single">
+        <RecpieList
+          addRecpie={handleRecpieAdd}
+          delRecpie={handleRecpieDelete}
+          recpies={recpies}
+        />
+      </div>
     </Fragment>
   );
 }
@@ -15,7 +51,7 @@ const sampleData = [
     name: "Chicken Jalfarezi",
     servings: 2,
     cookTime: "2:00",
-    instructions: "1. Put some salt \n2. Put chicken in oven \n3. Eat it",
+    instructions: "1. Put some salt\n2. Put chicken in oven \n3. Eat it",
     ingredients: [
       {
         id: 1,
