@@ -1,5 +1,6 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import IngredientList from "./IngredientList";
+import { RecpieContext } from "./App";
 
 export default function Recpie({
   id,
@@ -8,8 +9,9 @@ export default function Recpie({
   cookTime,
   instructions,
   ingredients,
-  delRecpie,
 }) {
+  const value = useContext(RecpieContext);
+
   return (
     <Fragment>
       <div className="single">
@@ -17,7 +19,10 @@ export default function Recpie({
           <h3>{name}</h3>
           <div>
             <button className="edit">⚙️</button>
-            <button className="delete" onClick={() => delRecpie(id)}>
+            <button
+              className="delete"
+              onClick={() => value.handleRecpieDelete(id)}
+            >
               ❌
             </button>
           </div>

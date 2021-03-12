@@ -1,10 +1,17 @@
-import { Fragment, useState } from "react";
+import { createContext, Fragment, useState } from "react";
 import RecpieList from "./RecpieList";
 import "./app.css";
 import { v4 as uuid } from "uuid";
 
+export const RecpieContext = createContext();
+
 function App() {
   const [recpies, setRecpies] = useState(sampleData);
+
+  const recpieContextValue = {
+    handleRecpieAdd,
+    handleRecpieDelete,
+  };
 
   function handleRecpieAdd() {
     const newRecpie = {
@@ -34,13 +41,11 @@ function App() {
       <div className="title">
         <h1>The cooking recpie</h1>
       </div>
-      <div className="single">
-        <RecpieList
-          addRecpie={handleRecpieAdd}
-          delRecpie={handleRecpieDelete}
-          recpies={recpies}
-        />
-      </div>
+      <RecpieContext.Provider value={recpieContextValue}>
+        <div className="single">
+          <RecpieList recpies={recpies} />
+        </div>
+      </RecpieContext.Provider>
     </Fragment>
   );
 }
