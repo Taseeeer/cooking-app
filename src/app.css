@@ -8,7 +8,6 @@ body {
   background-color: dimgrey;
   font-family: monospace;
   color: white;
-  font-weight: bold;
   font-size: 1.3rem;
   padding: 1rem;
 }
@@ -93,4 +92,58 @@ button {
   100% {
     transform: rotate(10deg);
   }
+}
+
+.r-edit {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 50%;
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 3rem;
+}
+
+.x {
+  background-color: red;
+  color: white;
+  border-radius: 0.3rem;
+  border: none;
+  padding: 0.1rem 0.4rem;
+}
+
+.add-ing {
+  background-color: rgb(77, 79, 82);
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: white;
+  margin: 1rem 0 0 2.2rem;
+}
+
+.edit-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  row-gap: 12px;
+  column-gap: 45px;
+}
+
+.edit-input {
+  border: 1px solid black;
+  border-radius: 5px;
+  outline: none;
+  width: 100%;
+}
+
+textarea.edit-input {
+  resize: none;
+  height: 300px;
+}
+
+.ing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 12px;
+  margin-top: 20px;
+  margin-left: 40px;
 }

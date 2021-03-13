@@ -1,7 +1,8 @@
-import { createContext, Fragment, useState } from "react";
+import { createContext, Fragment, useEffect, useState } from "react";
 import RecpieList from "./RecpieList";
 import "./app.css";
 import { v4 as uuid } from "uuid";
+import RecpieEdit from "./RecpieEdit";
 
 export const RecpieContext = createContext();
 
@@ -12,6 +13,14 @@ function App() {
     handleRecpieAdd,
     handleRecpieDelete,
   };
+
+  useEffect(() => {
+    setRecpies(JSON.parse(localStorage.getItem("cookings")));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cookings", JSON.stringify(recpies));
+  }, [recpies]);
 
   function handleRecpieAdd() {
     const newRecpie = {
@@ -44,6 +53,7 @@ function App() {
       <RecpieContext.Provider value={recpieContextValue}>
         <div className="single">
           <RecpieList recpies={recpies} />
+          <RecpieEdit />
         </div>
       </RecpieContext.Provider>
     </Fragment>
