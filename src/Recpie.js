@@ -18,7 +18,12 @@ export default function Recpie({
         <div>
           <h3>{name}</h3>
           <div>
-            <button className="edit">⚙️</button>
+            <button
+              className="edit"
+              onClick={() => value.handleRecpieSelect(id)}
+            >
+              ⚙️
+            </button>
             <button
               className="delete"
               onClick={() => value.handleRecpieDelete(id)}

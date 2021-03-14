@@ -7,11 +7,16 @@ import RecpieEdit from "./RecpieEdit";
 export const RecpieContext = createContext();
 
 function App() {
+  const [recpieId, setRecpieId] = useState();
   const [recpies, setRecpies] = useState(sampleData);
 
+  const selectRecpie = recpies.find((rec) => rec.id === recpieId);
+  console.log(selectRecpie);
   const recpieContextValue = {
     handleRecpieAdd,
     handleRecpieDelete,
+    handleRecpieSelect,
+    handleChange,
   };
 
   useEffect(() => {
@@ -22,21 +27,34 @@ function App() {
     localStorage.setItem("cookings", JSON.stringify(recpies));
   }, [recpies]);
 
+  function handleChange(id, recpie) {
+    const newRecpies = [...recpies];
+    const index = newRecpies.findIndex((r) => r.id === id);
+    newRecpies[index] = recpie;
+    setRecpies(newRecpies);
+  }
+
+  function handleRecpieSelect(id) {
+    setRecpieId(id);
+  }
+
   function handleRecpieAdd() {
     const newRecpie = {
       id: uuid(),
-      name: "name",
+      name: "",
       servings: 1,
-      cookTime: "1:00",
-      instructions: "inst",
+      cookTime: "",
+      instructions: "",
       ingredients: [
         {
           id: uuid(),
-          name: "ing",
-          amout: "1tb spoon",
+          name: "",
+          amout: "",
         },
       ],
     };
+
+    setRecpieId(newRecpie.id);
     setRecpies([...recpies, newRecpie]);
   }
 
@@ -53,7 +71,7 @@ function App() {
       <RecpieContext.Provider value={recpieContextValue}>
         <div className="single">
           <RecpieList recpies={recpies} />
-          <RecpieEdit />
+          {selectRecpie && <RecpieEdit recpie={selectRecpie} />}
         </div>
       </RecpieContext.Provider>
     </Fragment>
